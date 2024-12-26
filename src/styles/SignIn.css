@@ -1,0 +1,194 @@
+/* Container */
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/a449fabb-05e4-4c8a-b062-b0bec7d03085/KR-ko-20240115-trifectadaily-perspective_alpha_website_large.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.signin-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.card-wrapper {
+  width: 450px;
+  perspective: 1000px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-container {
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+}
+
+.card-container.sign-up {
+  transform: rotateY(180deg);
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  padding: 60px 68px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.card.front {
+  z-index: 2;
+}
+
+.card.back {
+  transform: rotateY(180deg);
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 16px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  background: #454545;
+}
+
+input::placeholder {
+  color: #8c8c8c;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 16px;
+  background: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 24px 0 12px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #f40612;
+}
+
+/* Terms Button */
+term-button {
+  color: #8c8c8c;
+  cursor: pointer;
+  transition: color 0.3s;
+  text-align: center;
+  margin: 10px 0;
+}
+
+term-button:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Text and Links */
+.signin-container span {
+  color: #8c8c8c;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signin-container span:hover {
+  text-decoration: underline;
+}
+
+p {
+  color: white;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Error Messages */
+.error {
+  color: #e87c03;
+  font-size: 13px;
+  margin-top: 6px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Checkbox */
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #b3b3b3;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #181818;
+  color: white;
+  padding: 20px;
+  border-radius: 4px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

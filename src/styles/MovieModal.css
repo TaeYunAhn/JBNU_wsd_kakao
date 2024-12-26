@@ -1,0 +1,215 @@
+/* 모달 오버레이 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 모달 컨텐츠 */
+.modal-content {
+  background-color: #141414;
+  color: white;
+  width: 90%;
+  max-width: 700px;
+  height: 600px;  /* 고정 높이 설정 */
+  border-radius: 6px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: scaleIn 0.3s ease-in-out;
+  overflow: hidden;  /* 내용이 넘치지 않도록 */
+}
+
+/* 닫기 버튼 */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+/* 모달 헤더 (포스터 + 정보) */
+.modal-header {
+  display: flex;
+  gap: 20px;
+  height: 100%;  /* 부모 높이 전체 사용 */
+  overflow: hidden;  /* 내용이 넘치지 않도록 */
+}
+
+/* 영화 포스터 */
+.modal-poster {
+  width: 250px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;  /* 포스터 크기 고정 */
+}
+
+/* 영화 정보 섹션 */
+.modal-info {
+  flex: 1;
+  overflow-y: auto;  /* 정보 부분만 스크롤 가능 */
+  padding-right: 10px;
+  height: 100%;  /* 부모 높이 전체 사용 */
+}
+
+.modal-info h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  position: sticky;  /* 제목 고정 */
+  top: 0;
+  background-color: #141414;
+  padding: 10px 0;
+  z-index: 1;
+}
+
+.modal-info p {
+  margin: 10px 0;
+  color: #d2d2d2;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.modal-info strong {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 찜하기 버튼 */
+.wishlist-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.wishlist-button:hover {
+  background-color: #f40612;
+  transform: scale(1.02);
+}
+
+.wishlist-button.active {
+  background-color: #333;
+}
+
+.wishlist-button.active:hover {
+  background-color: #444;
+}
+
+/* 로딩 및 에러 메시지 */
+.loading-message, 
+.error-message {
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.error-message {
+  color: #e50914;
+}
+
+/* 스크롤바 스타일링 */
+.modal-info::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-info::-webkit-scrollbar-track {
+  background: #181818;
+}
+
+.modal-info::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+
+.modal-info::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .modal-content {
+    height: 80vh;  /* 모바일에서는 화면 높이에 맞춤 */
+    width: 95%;
+    margin: 10px;
+  }
+
+  .modal-header {
+    flex-direction: column;
+  }
+
+  .modal-poster {
+    width: 200px;
+    margin: 0 auto 20px;
+  }
+
+  .modal-info {
+    padding-right: 5px;
+  }
+
+  .modal-info h2 {
+    font-size: 20px;
+    padding: 5px 0;
+  }
+
+  .wishlist-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
