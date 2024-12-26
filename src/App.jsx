@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Popular from './pages/Popular';
@@ -23,10 +23,11 @@ const AppWrapper = () => {
       try {
         await new Promise(resolve => setTimeout(resolve, 100));
         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        const kakaoUser = JSON.parse(localStorage.getItem('kakaoUser'));
         const rememberedUser = JSON.parse(localStorage.getItem('rememberMe'));
-        const currentPath = window.location.hash; // pathname 대신 hash 사용
+        const currentPath = window.location.hash;
 
-        if (loggedInUser) {
+        if (loggedInUser || kakaoUser) {
           if (currentPath === '#/signin') {
             navigate('/home');
           }

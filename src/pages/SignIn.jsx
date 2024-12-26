@@ -6,6 +6,9 @@ import '../styles/SignIn.css';
 import termsText from '../terms/terms.md';
 import '../styles/TermsModal.css';
 
+const TMDB_API_KEY = "0dddad40b95585e608004ae19df81bd2";
+const KAKAO_KEY = "91d4fd298713928628e55b677c118bd3";
+
 const SignIn = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
@@ -46,7 +49,7 @@ const SignIn = () => {
       const user = users.find((u) => u.email === rememberedUser.email);
       
       if (user) {
-        // 30일 이내인 경우에만 자동 로그인
+        // 30일 이내인 경��에만 자동 로그인
         const thirtyDays = 30 * 24 * 60 * 60 * 1000; // 30일을 밀리초로 변환
         if (new Date().getTime() - rememberedUser.timestamp < thirtyDays) {
           localStorage.setItem('loggedInUser', JSON.stringify(user));
@@ -58,6 +61,15 @@ const SignIn = () => {
       }
     }
   }, [navigate]);
+
+  useEffect(() => {
+    // 카카오 SDK 초기화
+    if (window.Kakao) {
+      if (!window.Kakao.isInitialized()) {
+        window.Kakao.init(KAKAO_KEY);
+      }
+    }
+  }, []);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -146,7 +158,7 @@ const SignIn = () => {
     const { email, password, rememberMe } = formData;
   
     if (!validateEmail(email)) {
-      setErrors({ email: '유효하지 않은 이메일 형식입니다.' });
+      setErrors({ email: '유효하지 않은 이메일 형식입��다.' });
       return;
     }
   
@@ -211,6 +223,44 @@ const SignIn = () => {
     }, 500); // 애니메이션 시간 (0.5초) 후에 모달을 숨김
   };
 
+  const handleKakaoLogin = () => {
+    if (!window.Kakao) {
+      setToast({ message: '카카오 SDK 로드 실패', type: 'error' });
+      return;
+    }
+
+    window.Kakao.Auth.login({
+      success: (authObj) => {
+        window.Kakao.API.request({
+          url: '/v2/user/me',
+          success: (response) => {
+            const kakaoUserData = {
+              id: response.id,
+              nickname: response.properties?.nickname,
+              profileImage: response.properties?.profile_image,
+              apiKey: TMDB_API_KEY
+            };
+            
+            localStorage.setItem('kakaoUser', JSON.stringify(kakaoUserData));
+            setToast({ message: '카카오 로그인 성공!', type: 'success' });
+            
+            setTimeout(() => {
+              navigate('/');
+            }, 2000);
+          },
+          fail: (error) => {
+            console.error('카카오 사용자 정보 요청 실패:', error);
+            setToast({ message: '카카오 로그인 실패', type: 'error' });
+          }
+        });
+      },
+      fail: (error) => {
+        console.error('카카오 로그인 실패:', error);
+        setToast({ message: '카카오 로그인 실패', type: 'error' });
+      }
+    });
+  };
+
   return (
     <div className="signin-container">
       <div className="card-wrapper">
@@ -250,6 +300,12 @@ const SignIn = () => {
               <span>로그인 상태 유지</span>
             </label>
             <button onClick={handleSignIn}>로그인</button>
+            <button 
+              onClick={handleKakaoLogin}
+              className="kakao-login-btn"
+            >
+              카카오로 시작하기
+            </button>
             <br />
             <span onClick={handleCardSwitch}>계정이 없으신가요? 회원가입</span>
           </div>
