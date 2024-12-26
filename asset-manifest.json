@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/JBNU_wsd_kakao/static/css/main.6822e550.chunk.css",
+    "main.js": "/JBNU_wsd_kakao/static/js/main.21d1e199.chunk.js",
+    "main.js.map": "/JBNU_wsd_kakao/static/js/main.21d1e199.chunk.js.map",
+    "runtime-main.js": "/JBNU_wsd_kakao/static/js/runtime-main.25851c8d.js",
+    "runtime-main.js.map": "/JBNU_wsd_kakao/static/js/runtime-main.25851c8d.js.map",
+    "static/js/2.1fc5e40f.chunk.js": "/JBNU_wsd_kakao/static/js/2.1fc5e40f.chunk.js",
+    "static/js/2.1fc5e40f.chunk.js.map": "/JBNU_wsd_kakao/static/js/2.1fc5e40f.chunk.js.map",
+    "index.html": "/JBNU_wsd_kakao/index.html",
+    "precache-manifest.2f8a774ae2b8d6b1da41667d86331e8c.js": "/JBNU_wsd_kakao/precache-manifest.2f8a774ae2b8d6b1da41667d86331e8c.js",
+    "service-worker.js": "/JBNU_wsd_kakao/service-worker.js",
+    "static/css/main.6822e550.chunk.css.map": "/JBNU_wsd_kakao/static/css/main.6822e550.chunk.css.map",
+    "static/js/2.1fc5e40f.chunk.js.LICENSE.txt": "/JBNU_wsd_kakao/static/js/2.1fc5e40f.chunk.js.LICENSE.txt",
+    "static/media/terms.md": "/JBNU_wsd_kakao/static/media/terms.d8c456cc.md"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.25851c8d.js",
+    "static/js/2.1fc5e40f.chunk.js",
+    "static/css/main.6822e550.chunk.css",
+    "static/js/main.21d1e199.chunk.js"
+  ]
+}
